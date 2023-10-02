@@ -28,7 +28,7 @@ namespace GeldAutomaatApp
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                // Connection is established
+                // Connection is established ....
 
                 // Example: Execute a SQL query
                 string sqlQuery = "SELECT * FROM accounts WHERE blocked != 1 AND account_number = '" + accountNumber + "'";

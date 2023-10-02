@@ -1,0 +1,105 @@
+﻿<Window x:Class="Geldmaat.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Geldmaat"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid Background="Chocolate">
+            <Grid Name="login" Visibility="Visible" Margin="0,0,0,-48">
+                <Grid Name="loginn" Visibility="Visible" Margin="0,0,0,-48">
+                    <!-- ... Overige XAML-inhoud ... -->
+                    <TextBlock Text="Geldautomaat Inloggen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="20" Foreground="White"/>
+
+                    <StackPanel Margin="20" Name="rekeningnummerpanel">
+                        <TextBlock Text="Gebruikersnaam admin" Margin="0,150,0,5" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="AccountNumberTextBox" Width="200" Height="30" Margin="0,10,0,0" />
+                        <Button Content="Inloggen" Width="100" Height="30"
+            Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="checkAccountNameButtonClick" Margin="0,25,0,100"/>
+                    </StackPanel>
+                    <StackPanel Visibility="Hidden" Name="pin">
+                        <TextBlock Text="Wachtwoord admin" Margin="0,150,0,5" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="PinTextBox" Width="200" Height="30" Margin="0,10,0,0"/>
+                        <Button Content="Inloggen" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,100"
+            Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="checkAccountPincodeButtonClick"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Name="home" Visibility="Collapsed">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Welkom bij de Geldautomaat" FontWeight="Bold" FontSize="18" Margin="10" />
+                        <!-- Hier kun je de saldo-informatie en transacties weergeven -->
+                        <TextBlock Text="Saldo: " Name="saldo" Margin="10" Foreground="Green" />
+                        <TextBlock Text="Laatste 3 transacties:" Margin="10" Foreground="Green" />
+                        <ListView Name="TransactionListView" Margin="10">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Datum" Width="150" />
+                                    <GridViewColumn Header="Transactie" Width="200" />
+                                    <GridViewColumn Header="Bedrag" Width="100" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!-- ATM Functional Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="Rekening toevoegen" Name="rekening_voegen" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="Rekening_toevoegen_knop"/>
+                    <Button Content="Pincode wijzigen" Name="transactiesknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="pincode_button_click"/>
+                    <Button Content="Blokkeren" Name="blokkerengrid" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="blokkerengrid_Click"/>
+                    <Button Content="Saldo wijzigen" Name="stortenknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="stortenknop_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Name="rekeningtoevoegen" Visibility="Collapsed" Background="Chocolate">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Rekening nummer" Margin="0,150,0,5" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="accountNumberBox" Width="200" Height="30" Margin="0,10,0,0"/>
+                        <TextBlock Text="Pincode" Margin="0,0,0,5" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="pincodeBox" Width="200" Height="30" Margin="0,10,0,0"/>
+                        <Button Content="Inloggen" Width="100" Height="30"
+Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="accounttoevoegen_Click" Margin="0,25,0,100"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Name="saldoaanpassen" Visibility="Collapsed" Background="Chocolate">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Saldo aanpassen" Margin="0,20,0,10" Foreground="Black" HorizontalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="Huidig saldo:" Name="currentBalance" Margin="0,0,0,10" Foreground="Green" HorizontalAlignment="Center"/>
+                        <TextBlock Text="rekening nummer" Margin="0,0,0,5" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="rekeningnummerTextBox" Width="200" Height="30" Margin="0,0,0,10"/>
+                        <TextBlock Text="Bedrag:" Margin="0,0,0,5" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="amountTextBox" Width="200" Height="30" Margin="0,0,0,10"/>
+                        <Button Content="Geld storten" Width="150" Height="30"
+                    Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="stortenButton_Click" Margin="0,0,0,10"/>
+                        <Button Content="Geld afhalen" Width="150" Height="30"
+                    Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="afhalenButton_Click"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Name="Blokkeren" Visibility="Collapsed">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Rekening nummer" Margin="0,150,0,5" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="rekeningnummerBlokkeren" Width="200" Height="30" Margin="0,10,0,0"/>
+                        <Button Content="Blokkeren" Width="100" Height="30"
+                    Background="#FF0000" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="Blokkeren_Click" Margin="0,25,0,100"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Name="pinwijzigen" Visibility="Collapsed">
+                <TextBlock Text="Rekening nummer" Margin="0,130,0,267" Foreground="Black" HorizontalAlignment="Center"/>
+                <TextBox x:Name="rekeningnummer_pincode_wijzigen" Width="200" Height="30" Margin="0,0,0,100"/>
+                <TextBlock Text="Nieuwe pincode" Margin="0,187,0,135" Foreground="Black" HorizontalAlignment="Center"/>
+                <TextBox x:Name="pincode_wijzigen" Width="200" Height="30" Margin="0,10,0,0"/>
+                <Button Content="Pincode wijzigen" Width="100" Height="30"
+Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="pincode_wijzig_Click" Margin="0,150,0,0"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

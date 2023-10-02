@@ -1,0 +1,146 @@
+﻿<Window x:Class="GeldAutomaatApp.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Geldautomaat Inloggen" Height="366" Width="780" WindowState="Maximized">
+    <Grid>
+        <Grid Background="#333333">
+            <Grid Name="login" Visibility="Visible" Margin="0,0,0,-48">
+                <Grid Name="loginn" Visibility="Visible" Margin="0,0,0,-48">
+                    <!-- ... Overige XAML-inhoud ... -->
+                    <TextBlock Text="Geldautomaat Inloggen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="20" Foreground="White"/>
+
+                    <StackPanel Margin="20" Name="rekeningnummerpanel">
+                        <TextBlock Text="Rekeningnummer:" Margin="0,20,0,5" Foreground="White"/>
+                        <TextBox x:Name="AccountNumberTextBox" Width="200" Height="30" />
+
+                        <Button Content="Inloggen" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0" Click="LoginButton_Click"
+            Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1"/>
+                        <Button Content="admin" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0" Click="adminbutton_Click"
+            Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1"/>
+                    </StackPanel>
+                    <StackPanel Visibility="Hidden" Name="pin">
+                        <TextBlock Text="Pincode:" Margin="0,15,0,5" Foreground="White"/>
+                        <TextBox x:Name="PinTextBox" Width="200" Height="30" />
+                        <Button Content="Inloggen" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0" Click="pincode_check"
+            Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1"/>
+                    </StackPanel>
+
+                </Grid>
+                <!-- Numpad voor cijfers -->
+                <Grid Name="numpad" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Knoppen voor cijfers 1-9 -->
+                    <Button Content="1" Width="50" Height="50" Click="NumberButton_Click" Tag="1" Grid.Row="0" Grid.Column="0"/>
+                    <Button Content="2" Width="50" Height="50" Click="NumberButton_Click" Tag="2" Grid.Row="0" Grid.Column="1"/>
+                    <Button Content="3" Width="50" Height="50" Click="NumberButton_Click" Tag="3" Grid.Row="0" Grid.Column="2"/>
+                    <Button Content="4" Width="50" Height="50" Click="NumberButton_Click" Tag="4" Grid.Row="1" Grid.Column="0"/>
+                    <Button Content="5" Width="50" Height="50" Click="NumberButton_Click" Tag="5" Grid.Row="1" Grid.Column="1"/>
+                    <Button Content="6" Width="50" Height="50" Click="NumberButton_Click" Tag="6" Grid.Row="1" Grid.Column="2"/>
+                    <Button Content="7" Width="50" Height="50" Click="NumberButton_Click" Tag="7" Grid.Row="2" Grid.Column="0"/>
+                    <Button Content="8" Width="50" Height="50" Click="NumberButton_Click" Tag="8" Grid.Row="2" Grid.Column="1"/>
+                    <Button Content="9" Width="50" Height="50" Click="NumberButton_Click" Tag="9" Grid.Row="2" Grid.Column="2"/>
+
+                    <!-- Knop voor cijfer 0 -->
+                    <Button Content="0" Width="50" Height="50" Click="NumberButton_Click" Tag="0" Grid.Row="3" Grid.Column="1"/>
+                </Grid>
+            </Grid>
+
+
+            <Grid Name="home" Visibility="Collapsed">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Welkom bij de Geldautomaat" FontWeight="Bold" FontSize="18" Margin="10" />
+                        <!-- Hier kun je de saldo-informatie en transacties weergeven -->
+                        <TextBlock Text="Saldo: " Name="saldo" Margin="10" Foreground="Green" />
+                        <TextBlock Text="Laatste 3 transacties:" Margin="10" Foreground="Green" />
+                        <ListView Name="TransactionListView" Margin="10">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Datum" Width="150" />
+                                    <GridViewColumn Header="Transactie" Width="200" />
+                                    <GridViewColumn Header="Bedrag" Width="100" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!-- ATM Functional Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="Saldo Bekijken" Name="Saldozien" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="Saldozien_Click" />
+                    <Button Content="Laatste Transacties" Name="transactiesknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="Transactiesknop_Click" />
+                    <Button Content="Geld Opnemen" Name="opnemenknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="opnemenknop_Click" />
+                    <Button Content="Geld Storten" Name="stortenknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="stortenknop_Click" />
+                </StackPanel>
+            </Grid>
+            <Grid Name="storten" Visibility="Collapsed">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Geld Storten" FontWeight="Bold" FontSize="18" Margin="10" />
+                        <TextBlock Text="Voer het bedrag in dat je wilt storten:" Margin="10" />
+                        <TextBox Name="StortBedragTextBox" Width="200" Height="30" Margin="10" />
+                        <Button Content="Storten" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="StortenButton_Click" />
+                        <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="TerugButton_Click" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Name="opnemen" Visibility="Collapsed">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Geld Opnemen" FontWeight="Bold" FontSize="18" Margin="10" />
+                        <TextBlock Text="Voer het bedrag in dat je wilt opnemen:" Margin="10" />
+                        <TextBox Name="OpnameBedragTextBox" Width="200" Height="30" Margin="10" />
+                        <Button Content="Opnemen" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="OpnemenButton_Click" />
+                        <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="TerugStorten_Click" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Name="saldoBekijken" Visibility="Collapsed">
+                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Saldo: " Name="saldoWeergave" Margin="10" Foreground="Green" Width="386" FontSize="72" TextAlignment="Center" />
+                        <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="SaldoTerug_Click" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Name="transacties" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Name="dataGrid" Height="338" Grid.Row="1" Grid.Column="1" Width="768">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                </Grid>
+                <Button Content="Terug" Height="40" VerticalAlignment="Top" Margin="30,59,30,0" Click="TransactiesTerug_Click" Grid.Row="2" Grid.Column="1" />
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</Window>

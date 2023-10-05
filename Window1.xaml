@@ -27,35 +27,31 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Name="home" Visibility="Collapsed">
-                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+            <Grid Name="home" Visibility="Visible" Background="Chocolate">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="163*"/>
+                    <ColumnDefinition Width="237*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="2">
                     <StackPanel>
-                        <TextBlock Text="Welkom bij de Geldautomaat" FontWeight="Bold" FontSize="18" Margin="10" />
-                        <!-- Hier kun je de saldo-informatie en transacties weergeven -->
-                        <TextBlock Text="Saldo: " Name="saldo" Margin="10" Foreground="Green" />
-                        <TextBlock Text="Laatste 3 transacties:" Margin="10" Foreground="Green" />
-                        <ListView Name="TransactionListView" Margin="10">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Datum" Width="150" />
-                                    <GridViewColumn Header="Transactie" Width="200" />
-                                    <GridViewColumn Header="Bedrag" Width="100" />
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                        <TextBlock Text="Welkom Admin" FontWeight="Bold" FontSize="18" Margin="10,30,10,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Text="Hier kunt u rekeningen beheren" FontWeight="Bold" FontSize="18" Margin="10,0,10,10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
                 </Border>
 
                 <!-- ATM Functional Buttons -->
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="94,10,0,10" Grid.Column="1">
                     <Button Content="Rekening toevoegen" Name="rekening_voegen" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="Rekening_toevoegen_knop"/>
                     <Button Content="Pincode wijzigen" Name="transactiesknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="pincode_button_click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,10,9
+                            4,10" Grid.ColumnSpan="2">
                     <Button Content="Blokkeren" Name="blokkerengrid" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="blokkerengrid_Click"/>
                     <Button Content="Saldo wijzigen" Name="stortenknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="stortenknop_Click"/>
                 </StackPanel>
             </Grid>
             <Grid Name="rekeningtoevoegen" Visibility="Collapsed" Background="Chocolate">
-                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Rekening nummer" Margin="0,150,0,5" Foreground="Black" HorizontalAlignment="Center"/>
                         <TextBox x:Name="accountNumberBox" Width="200" Height="30" Margin="0,10,0,0"/>
@@ -67,7 +63,7 @@ Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" 
                 </Border>
             </Grid>
             <Grid Name="saldoaanpassen" Visibility="Collapsed" Background="Chocolate">
-                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Saldo aanpassen" Margin="0,20,0,10" Foreground="Black" HorizontalAlignment="Center" FontSize="20"/>
                         <TextBlock Text="Huidig saldo:" Name="currentBalance" Margin="0,0,0,10" Foreground="Green" HorizontalAlignment="Center"/>
@@ -79,11 +75,13 @@ Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" 
                     Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="stortenButton_Click" Margin="0,0,0,10"/>
                         <Button Content="Geld afhalen" Width="150" Height="30"
                     Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="afhalenButton_Click"/>
+                        <Button Content="Terug" Width="150" Height="30"
+                    Background="#007700" Foreground="White" BorderBrush="Black" Margin="0,10,0,0" BorderThickness="1" Click="TerugStorten_Click"/>
                     </StackPanel>
                 </Border>
             </Grid>
-            <Grid Name="Blokkeren" Visibility="Collapsed">
-                <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+            <Grid Name="Blokkeren" Visibility="Collapsed" Background="Chocolate">
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Rekening nummer" Margin="0,150,0,5" Foreground="Black" HorizontalAlignment="Center"/>
                         <TextBox x:Name="rekeningnummerBlokkeren" Width="200" Height="30" Margin="0,10,0,0"/>
@@ -92,7 +90,7 @@ Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" 
                     </StackPanel>
                 </Border>
             </Grid>
-            <Grid Name="pinwijzigen" Visibility="Collapsed">
+            <Grid Name="pinwijzigen" Visibility="Collapsed" Background="Chocolate">
                 <TextBlock Text="Rekening nummer" Margin="0,130,0,267" Foreground="Black" HorizontalAlignment="Center"/>
                 <TextBox x:Name="rekeningnummer_pincode_wijzigen" Width="200" Height="30" Margin="0,0,0,100"/>
                 <TextBlock Text="Nieuwe pincode" Margin="0,187,0,135" Foreground="Black" HorizontalAlignment="Center"/>

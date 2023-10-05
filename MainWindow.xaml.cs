@@ -66,7 +66,8 @@ namespace GeldAutomaatApp
             string expectedpin = getPinCode(rekeningnummer);
             if (Tools.VerifySHA256Hash(enteredpin, expectedpin))
             {
-                login.Visibility = Visibility.Hidden;
+                loginn.Visibility = Visibility.Hidden;
+                numpad.Visibility = Visibility.Hidden;
                 home.Visibility = Visibility.Visible;
                 saldo.Text = getBalance(rekeningnummer);
 
@@ -363,6 +364,22 @@ namespace GeldAutomaatApp
         private void adminbutton_Click(object sender, RoutedEventArgs e)
         {
             w1.Show();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AccountNumberTextBox.Text.Length > 0)
+            {
+                // Als er tekens zijn in de TextBox, verwijder het laatste teken
+                AccountNumberTextBox.Text = AccountNumberTextBox.Text.Substring(0, AccountNumberTextBox.Text.Length - 1);
+                PinTextBox.Text = PinTextBox.Text.Substring(0, PinTextBox.Text.Length - 1);
+            }
+        }
+
+        private void EnterButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginButton_Click(sender, e);
+            pincode_check(sender, e);
         }
     }
 }

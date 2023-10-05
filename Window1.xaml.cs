@@ -397,7 +397,13 @@ namespace Geldmaat
         private void stortenknop_Click(object sender, RoutedEventArgs e)
         {
             home.Visibility = Visibility.Collapsed;
-            stortenknop.Visibility = Visibility.Visible;
+            saldoaanpassen.Visibility = Visibility.Visible;
+        }
+
+        private void TerugStorten_Click(object sender, RoutedEventArgs e)
+        {
+            saldoaanpassen.Visibility = Visibility.Collapsed;
+            home.Visibility = Visibility.Visible;
         }
     }
 }

@@ -62,6 +62,7 @@
                         <TextBox x:Name="pincodeBox" Width="200" Height="30" Margin="0,10,0,0"/>
                         <Button Content="Inloggen" Width="100" Height="30"
 Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="accounttoevoegen_Click" Margin="0,25,0,100"/>
+                        <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="ToevoegenTerug_Click" />
                     </StackPanel>
                 </Border>
             </Grid>
@@ -90,16 +91,18 @@ Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" 
                         <TextBox x:Name="rekeningnummerBlokkeren" Width="200" Height="30" Margin="0,10,0,0"/>
                         <Button Content="Blokkeren" Width="100" Height="30"
                     Background="#FF0000" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="Blokkeren_Click" Margin="0,25,0,100"/>
+                        <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="BlokkerenTerug_Click" />
                     </StackPanel>
                 </Border>
             </Grid>
-            <Grid Name="pinwijzigen" Visibility="Collapsed" Background="Chocolate">
-                <TextBlock Text="Rekening nummer" Margin="0,130,0,267" Foreground="Black" HorizontalAlignment="Center"/>
-                <TextBox x:Name="rekeningnummer_pincode_wijzigen" Width="200" Height="30" Margin="0,0,0,100"/>
-                <TextBlock Text="Nieuwe pincode" Margin="0,187,0,135" Foreground="Black" HorizontalAlignment="Center"/>
+            <Grid Name="pinwijzigen" Visibility="Visible" Background="Chocolate">
+                <TextBlock Text="Rekening nummer" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-155,0,0"/>
+                <TextBox x:Name="rekeningnummer_pincode_wijzigen" Width="200" Height="30" Margin="0,0,0,100" VerticalAlignment="Center"/>
+                <TextBlock Text="Nieuwe pincode" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-50,0,0"/>
                 <TextBox x:Name="pincode_wijzigen" Width="200" Height="30" Margin="0,10,0,0"/>
-                <Button Content="Pincode wijzigen" Width="100" Height="30"
-Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="pincode_wijzig_Click" Margin="0,150,0,0"/>
+                <Button Content="Pincode wijzigen" Width="100" Height="30" Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="pincode_wijzig_Click" Margin="0,150,0,0"/>
+                <Button Content="Terug" Width="100" Height="30" Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" Click="pincodeterug_Click" Margin="0,250,0,0"/>
+
             </Grid>
         </Grid>
     </Grid>

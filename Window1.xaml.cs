@@ -405,5 +405,23 @@ namespace Geldmaat
             saldoaanpassen.Visibility = Visibility.Collapsed;
             home.Visibility = Visibility.Visible;
         }
+
+        private void BlokkerenTerug_Click(object sender, RoutedEventArgs e)
+        {
+            Blokkeren.Visibility = Visibility.Collapsed;
+            home.Visibility = Visibility.Visible;
+        }
+
+        private void ToevoegenTerug_Click(object sender, RoutedEventArgs e)
+        {
+            rekeningtoevoegen.Visibility = Visibility.Collapsed;
+            home.Visibility = Visibility.Visible;
+        }
+
+        private void pincodeterug_Click(object sender, RoutedEventArgs e)
+        {
+            pinwijzigen.Visibility = Visibility.Collapsed;
+            home.Visibility = Visibility.Visible;
+        }
     }
 }

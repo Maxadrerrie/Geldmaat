@@ -67,42 +67,42 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
                 <Button Content="Saldo Bekijken" Name="Saldozien" Width="150" Height="50" Background="#27AE60" Foreground="White" FontSize="16" Margin="10" Click="Saldozien_Click" />
-                <Button Content="Laatste Transacties" Name="transactiesknop" Width="150" Height="50" Background="#27AE60" Foreground="White" FontSize="16" Margin="10" Click="Transactiesknop_Click" />
+                <Button Content="Laatste Transacties " Name="transactiesknop" Width="150" Height="50" Background="#27AE60" Foreground="White" FontSize="16" Margin="10" Click="Transactiesknop_Click" />
                 <Button Content="Geld Opnemen" Name="opnemenknop" Width="150" Height="50" Background="#27AE60" Foreground="White" FontSize="16" Margin="10" Click="opnemenknop_Click" />
                 <Button Content="Geld Storten" Name="stortenknop" Width="150" Height="50" Background="#27AE60" Foreground="White" FontSize="16" Margin="10" Click="stortenknop_Click" />
             </StackPanel>
         </Grid>
-        <Grid Name="storten" Visibility="Collapsed">
-            <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+        <Grid Name="storten" Visibility="Collapsed" Background="#2C3E50">
+            <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                 <StackPanel>
-                    <TextBlock Text="Geld Storten" FontWeight="Bold" FontSize="18" Margin="10" />
-                    <TextBlock Text="Voer het bedrag in dat je wilt storten:" Margin="10" />
+                    <TextBlock Text="Geld Storten" FontWeight="Bold" FontSize="18" Margin="10" HorizontalAlignment="Center" Foreground="White" />
+                    <TextBlock Text="Voer het bedrag in dat je wilt storten:" Margin="10" HorizontalAlignment="Center" Foreground="White" />
                     <TextBox Name="StortBedragTextBox" Width="200" Height="30" Margin="10" />
                     <Button Content="Storten" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="StortenButton_Click" />
                     <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="TerugButton_Click" />
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid Name="opnemen" Visibility="Collapsed">
-            <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+        <Grid Name="opnemen" Visibility="Collapsed" Background="#2C3E50">
+            <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                 <StackPanel>
-                    <TextBlock Text="Geld Opnemen" FontWeight="Bold" FontSize="18" Margin="10" />
-                    <TextBlock Text="Voer het bedrag in dat je wilt opnemen:" Margin="10" />
+                    <TextBlock Text="Geld Opnemen" FontWeight="Bold" FontSize="18" Margin="10" HorizontalAlignment="Center" Foreground="White" />
+                    <TextBlock Text="Voer het bedrag in dat je wilt opnemen:" Margin="10" HorizontalAlignment="Center" Foreground="White" />
                     <TextBox Name="OpnameBedragTextBox" Width="200" Height="30" Margin="10" />
                     <Button Content="Opnemen" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="OpnemenButton_Click" />
                     <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="TerugStorten_Click" />
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid Name="saldoBekijken" Visibility="Collapsed">
-            <Border Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+        <Grid Name="saldoBekijken" Visibility="Collapsed" Background="#2C3E50">
+            <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                 <StackPanel>
-                    <TextBlock Text="Saldo: " Name="saldoWeergave" Margin="10" Foreground="Green" Width="386" FontSize="72" TextAlignment="Center" />
+                    <TextBlock Text="Saldo: " Name="saldoWeergave" Margin="10,100,10,10" Foreground="Green" Width="386" FontSize="72" TextAlignment="Center" />
                     <Button Content="Terug" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="SaldoTerug_Click" />
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid Name="transacties" Visibility="Collapsed">
+        <Grid Name="transacties" Visibility="Collapsed" Background="#2C3E50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

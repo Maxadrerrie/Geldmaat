@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -308,7 +309,7 @@ namespace GeldAutomaatApp
         {
             string connectionString1 = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
-            string query = "SELECT * FROM transactions ORDER BY date DESC LIMIT 3";
+/*            string query = "SELECT * FROM transactions ORDER BY date DESC LIMIT 3";*/
 
 
             MySqlConnection connection = new MySqlConnection(connectionString1);
@@ -316,11 +317,10 @@ namespace GeldAutomaatApp
 
             string sql = "SELECT * FROM transactions WHERE transactions.rekening_nummer = @Rekeningen_idRekeningen ORDER BY transactions.date DESC LIMIT 3";
             MySqlCommand command = new MySqlCommand(sql, connection);
-            command.Parameters.Add("@Rekeningen_idRekeningen", MySqlDbType.Int64).Value = rekeningnummer;
+            command.Parameters.Add("Rekeningen_idRekeningen", MySqlDbType.Int64).Value = rekeningnummer;
             MySqlDataReader reader = command.ExecuteReader();
 
             int index = 0;
-
             while (reader.Read())
             {
                 TextBlock Timestamp = new TextBlock { Text = Convert.ToString(reader["date"]), Foreground= Brushes.White };

@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800" WindowState="Maximized">
     <Grid>
-        <Grid Background="Chocolate">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="333*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="449*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="Chocolate" Grid.ColumnSpan="3">
             <Grid Name="login" Visibility="Visible" Margin="0,0,0,-48">
                 <Grid Name="loginn" Visibility="Visible" Margin="0,0,0,-48">
                     <!-- ... Overige XAML-inhoud ... -->
@@ -27,29 +32,27 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Name="home" Visibility="Visible" Background="Chocolate">
+            <Grid Name="home" Visibility="Collapsed" Background="Chocolate">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="163*"/>
-                    <ColumnDefinition Width="237*"/>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="2">
+                <Border Grid.Row="0" BorderBrush="DarkGray" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="2">
                     <StackPanel>
-                        <TextBlock Text="Welkom Admin" FontWeight="Bold" FontSize="18" Margin="10,30,10,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <TextBlock Text="Hier kunt u rekeningen beheren" FontWeight="Bold" FontSize="18" Margin="10,0,10,10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Text="Welkom bij Bank XYZ" FontWeight="Bold" FontSize="24" Margin="10,20,10,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Text="Beheer hier uw rekeningen" FontWeight="Bold" FontSize="18" Margin="10,0,10,20" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </StackPanel>
                 </Border>
 
                 <!-- ATM Functional Buttons -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="94,10,0,10" Grid.Column="1">
-                    <Button Content="Rekening toevoegen" Name="rekening_voegen" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="Rekening_toevoegen_knop"/>
-                    <Button Content="Pincode wijzigen" Name="transactiesknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="pincode_button_click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,10,9
-                            4,10" Grid.ColumnSpan="2">
-                    <Button Content="Blokkeren" Name="blokkerengrid" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="blokkerengrid_Click"/>
-                    <Button Content="Saldo wijzigen" Name="stortenknop" Width="150" Height="50" Margin="10" Background="Green" Foreground="White" Click="stortenknop_Click"/>
+                <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="200">
+                    <Button Content="Rekening toevoegen" Name="rekening_voegen" Width="200" Height="50" Margin="0,0,0,10" Background="#00796b" Foreground="White" Click="Rekening_toevoegen_knop"/>
+                    <Button Content="Pincode wijzigen" Name="transactiesknop" Width="200" Height="50" Margin="0,0,0,10" Background="#00796b" Foreground="White" Click="pincode_button_click"/>
+                    <Button Content="Rekening Blokkeren" Name="blokkerengrid" Width="200" Height="50" Margin="0,0,0,10" Background="#00796b" Foreground="White" Click="blokkerengrid_Click"/>
+                    <Button Content="Saldo wijzigen" Name="stortenknop" Width="200" Height="50" Margin="0,0,0,10" Background="#00796b" Foreground="White" Click="stortenknop_Click"/>
                 </StackPanel>
             </Grid>
+
             <Grid Name="rekeningtoevoegen" Visibility="Collapsed" Background="Chocolate">
                 <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" CornerRadius="5">
                     <StackPanel>

@@ -95,7 +95,7 @@ Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1" 
                     </StackPanel>
                 </Border>
             </Grid>
-            <Grid Name="pinwijzigen" Visibility="Visible" Background="Chocolate">
+            <Grid Name="pinwijzigen" Visibility="Collapsed" Background="Chocolate">
                 <TextBlock Text="Rekening nummer" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-155,0,0"/>
                 <TextBox x:Name="rekeningnummer_pincode_wijzigen" Width="200" Height="30" Margin="0,0,0,100" VerticalAlignment="Center"/>
                 <TextBlock Text="Nieuwe pincode" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-50,0,0"/>

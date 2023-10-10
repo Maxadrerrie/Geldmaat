@@ -129,12 +129,10 @@ namespace Geldmaat
         {
             string enteredpin = PinTextBox.Text;
             string expectedpin = getPinCode(rekeningnummer);
-            MessageBox.Show(expectedpin);
             if (Tools.VerifySHA256Hash(enteredpin, expectedpin))
             {
                 pin.Visibility = Visibility.Hidden;
                 home.Visibility = Visibility.Visible;
-                MessageBox.Show("Goed");
 
             }
             else
@@ -194,8 +192,7 @@ namespace Geldmaat
             string hash = tls.CreateSHA256Hash(pincodeBox.Text);
 
             if (insertAccoount(accountNumberBox.Text, hash))
-            {
-                MessageBox.Show("Gelukt");
+            { 
 
                 accountNumberBox.Text = null;
                 pincodeBox.Text = null;

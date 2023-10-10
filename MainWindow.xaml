@@ -16,8 +16,8 @@
                 <Button Content="admin" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0" Click="adminbutton_Click"
             Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1"/>
             </StackPanel>
-            <StackPanel Visibility="Hidden" Name="pin">
-                <TextBlock Text="Pincode:" Margin="0,15,0,5" Foreground="White"/>
+            <StackPanel Visibility="Collapsed" Name="pin">
+                <TextBlock Text="Pincode:" Margin="0,50,0,5" Foreground="White" HorizontalAlignment="Center"/>
                 <TextBox x:Name="PinTextBox" Width="200" Height="30" />
                 <Button Content="Inloggen" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0" Click="pincode_check"
             Background="#007700" Foreground="White" BorderBrush="Black" BorderThickness="1"/>

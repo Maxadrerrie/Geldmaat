@@ -1,9 +1,24 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using MySql.Data.MySqlClient;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using Geldmaat;
+using MySql.Data.MySqlClient;
+using System.Data;
+using System.Data.SqlClient;
+using System.Net;
+using System.Security.Cryptography;
+
+
 
 namespace Geldmaat
 {
@@ -13,12 +28,13 @@ namespace Geldmaat
     public partial class Window1 : Window
     {
         Tools tls = new Tools();
-        public string rekeningnummer = null;
 
         public Window1()
         {
             InitializeComponent();
         }
+        public string rekeningnummer = null;
+        public object Messagebox { get; private set; }
 
         private void NumberButton_Click(object sender, RoutedEventArgs e)
         {
@@ -37,7 +53,9 @@ namespace Geldmaat
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
+                // Connection is established
 
+                // Example: Execute a SQL query
                 string sqlQuery = "SELECT * FROM accounts WHERE account_number = '" + accountNumber + "'";
                 MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
 
@@ -55,7 +73,6 @@ namespace Geldmaat
                 }
             }
         }
-
         public bool findEmployee(string accountNumber)
         {
             string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
@@ -63,7 +80,9 @@ namespace Geldmaat
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
+                // Connection is established
 
+                // Example: Execute a SQL query
                 string sqlQuery = "SELECT * FROM employees WHERE name = '" + accountNumber + "'";
                 MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
 
@@ -96,31 +115,33 @@ namespace Geldmaat
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if (reader.Read())
+                    if (reader.Read()) // Check if a result was returned
                     {
-                        return reader.GetString(0);
+                        return reader.GetString(0); // Assuming 'pin_code' is in the first column
                     }
                 }
             }
 
-            return null;
+            return null; // Return null if no PIN code was found
         }
 
         private void checkAccountPincodeButtonClick(object sender, RoutedEventArgs e)
         {
             string enteredpin = PinTextBox.Text;
             string expectedpin = getPinCode(rekeningnummer);
-
             if (Tools.VerifySHA256Hash(enteredpin, expectedpin))
             {
                 pin.Visibility = Visibility.Hidden;
                 home.Visibility = Visibility.Visible;
+
             }
             else
             {
                 MessageBox.Show("Fout");
+
             }
         }
+
 
         private void checkAccountNameButtonClick(object sender, RoutedEventArgs e)
         {
@@ -130,8 +151,10 @@ namespace Geldmaat
                 rekeningnummerpanel.Visibility = Visibility.Hidden;
                 pin.Visibility = Visibility.Visible;
                 PinTextBox.Text = null;
+
             }
         }
+
 
         public bool insertAccoount(string accountNumberString, string pincode)
         {
@@ -169,9 +192,11 @@ namespace Geldmaat
             string hash = tls.CreateSHA256Hash(pincodeBox.Text);
 
             if (insertAccoount(accountNumberBox.Text, hash))
-            {
+            { 
+
                 accountNumberBox.Text = null;
                 pincodeBox.Text = null;
+
                 home.Visibility = Visibility.Visible;
                 rekeningtoevoegen.Visibility = Visibility.Hidden;
             }
@@ -185,12 +210,14 @@ namespace Geldmaat
             {
                 connection.Open();
 
+                // Check if the account number exists
                 if (!findAccountNumber(accountNumber))
                 {
                     MessageBox.Show("Account not found");
                     return false;
                 }
 
+                // Update the PIN code
                 string hashedPin = tls.CreateSHA256Hash(newPin);
                 string sqlQuery = "UPDATE accounts SET pincode = @newPin WHERE account_number = @accountNumber";
 
@@ -215,6 +242,7 @@ namespace Geldmaat
 
         private void pincode_button_click(object sender, RoutedEventArgs e)
         {
+
             home.Visibility = Visibility.Hidden;
             pinwijzigen.Visibility = Visibility.Visible;
         }
@@ -235,6 +263,7 @@ namespace Geldmaat
                 MessageBox.Show("Rekening succesvol geblokkeerd");
                 Blokkeren.Visibility = Visibility.Hidden;
                 home.Visibility = Visibility.Visible;
+
             }
             else
             {
@@ -250,12 +279,14 @@ namespace Geldmaat
             {
                 connection.Open();
 
+                // Check if the account number exists
                 if (!findAccountNumber(accountNumber))
                 {
                     MessageBox.Show("Rekening niet gevonden");
                     return false;
                 }
 
+                // Update the 'blocked' status to indicate the account is blocked
                 string sqlQuery = "UPDATE accounts SET blocked = '1' WHERE account_number = @accountNumber";
 
                 MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
@@ -279,6 +310,7 @@ namespace Geldmaat
             home.Visibility = Visibility.Hidden;
             Blokkeren.Visibility = Visibility.Visible;
         }
+
         private void stortenButton_Click(object sender, RoutedEventArgs e)
         {
             if (double.TryParse(amountTextBox.Text, out double amount))
@@ -297,7 +329,7 @@ namespace Geldmaat
         {
             if (double.TryParse(amountTextBox.Text, out double amount))
             {
-                rekeningnummer = rekeningnummerTextBox.Text;
+                rekeningnummer  = rekeningnummerTextBox.Text;
                 UpdateBalance(-amount);
                 MessageBox.Show($"Geld afgehaald: {amount:C}");
             }

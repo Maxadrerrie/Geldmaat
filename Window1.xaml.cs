@@ -26,7 +26,9 @@ namespace Geldmaat
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class Window1 : Window
+
     {
+        public string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
         Tools tls = new Tools();
 
         public Window1()
@@ -48,7 +50,7 @@ namespace Geldmaat
 
         public bool findAccountNumber(string accountNumber)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
+
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -75,7 +77,6 @@ namespace Geldmaat
         }
         public bool findEmployee(string accountNumber)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -103,7 +104,6 @@ namespace Geldmaat
 
         public string getPinCode(string accountNumberString)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -158,7 +158,6 @@ namespace Geldmaat
 
         public bool insertAccoount(string accountNumberString, string pincode)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -204,7 +203,6 @@ namespace Geldmaat
 
         public bool ChangePinCode(string accountNumber, string newPin)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -273,7 +271,6 @@ namespace Geldmaat
 
         public bool BlockAccount(string accountNumber)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -341,7 +338,6 @@ namespace Geldmaat
 
         public void UpdateBalance(double amount)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -369,7 +365,6 @@ namespace Geldmaat
 
         public double GetBalance(string accountNumber)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {

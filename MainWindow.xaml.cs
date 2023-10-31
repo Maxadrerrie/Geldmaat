@@ -18,6 +18,7 @@ namespace GeldAutomaatApp
     {
         public Window1 w1 = new Window1();
         public string rekeningnummer = null;
+        public string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
         public LoginWindow()
         {
             InitializeComponent();
@@ -25,7 +26,6 @@ namespace GeldAutomaatApp
 
         public bool findAccountNumber(string accountNumber)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -80,8 +80,6 @@ namespace GeldAutomaatApp
 
         public string getPinCode(string accountNumberString)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
-
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
@@ -103,7 +101,6 @@ namespace GeldAutomaatApp
         }
         public string getBalance(string accountNumberString)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -127,8 +124,6 @@ namespace GeldAutomaatApp
 
         public bool Storten(string accountNumberString, double bedrag)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
-
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
@@ -165,7 +160,6 @@ namespace GeldAutomaatApp
 
         public bool OpnemenBedrag(string accountNumberString, double bedrag)
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -247,7 +241,6 @@ namespace GeldAutomaatApp
         }
         public int GetTransactionsOfToday()
         {
-            string connectionString = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
             List<string> listOutcome = new List<string>();
             using (var conn = new MySqlConnection(connectionString))
@@ -256,8 +249,11 @@ namespace GeldAutomaatApp
 
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = $"SELECT * FROM `transactions` WHERE `rekening_nummer` = '{rekeningnummer}' AND DAY(`date`) = {DateTime.Now.Day} AND  `type` = 'OPNEMEN'";
-                    using (var reader = cmd.ExecuteReader())
+                    string sql = $"SELECT * FROM `transactions` WHERE `rekening_nummer` = @Rekeningen_idRekeningen AND DAY(`date`) = {DateTime.Now.Day} AND  `type` = 'OPNEMEN'";
+                    MySqlCommand command = new MySqlCommand(sql, conn);
+                    command.Parameters.Add("@Rekeningen_idRekeningen", MySqlDbType.Int64).Value = rekeningnummer;
+
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -339,12 +335,11 @@ namespace GeldAutomaatApp
 
         private void GetLast3Transactions()
         {
-            string connectionString1 = "Server=localhost;Uid=root;Pwd=;Database=mydb";
 
 /*            string query = "SELECT * FROM transactions ORDER BY date DESC LIMIT 3";*/
 
 
-            MySqlConnection connection = new MySqlConnection(connectionString1);
+            MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 
             string sql = "SELECT * FROM transactions WHERE transactions.rekening_nummer = @Rekeningen_idRekeningen ORDER BY transactions.date DESC LIMIT 3";
